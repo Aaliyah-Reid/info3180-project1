@@ -2,46 +2,68 @@
 
 {% block main %}
 
-<h1>Add New Property</h1>
+<h1 class="display-5 fw-bold">Add New Property</h1>
 
 <div class="form_container">
 
-    <form action="{{url_for('createProperty')}}" method="post">
-        {{form.crsf_token}}
+    <form action="{{url_for('createProperty')}}" method="post" enctype="multipart/form-data">
+        {{form.csrf_token}}
 
-        <div class="field-container">
-            {{form.title.label(class='form.label')}}
-            {{ form.title(placeholder="Enter propety title")}}
+        <div class="max-fields">
+            {{form.title.label(class='form-label')}}
+            {{ form.title(placeholder="Enter propety title", class="form-control")}}
+    
+
+            {{form.description.label(class='form-label')}}
+            {{ form.description(placeholder="Provide a detailed description", class="form-control")}}
+
+        
         </div>
-        <div class="field-container">
-            <{{form.description.label(class='form.label')}}
-            {{ form.description(placeholder="Provide a detailed description")}}
+        
+        <div class="grid-fields">
+
+            <div class="num_rooms">
+                {{form.num_rooms.label(class='form-label')}}
+                {{ form.num_rooms(placeholder="3", class="form-control")}}
+
+            </div>
+    
+            <div class="num_bathrooms">
+                {{form.num_bathrooms.label(class='form-label')}}
+                {{ form.num_bathrooms(placeholder="2", class="form-control")}}
+
+            </div>
+
+            <div class="price">
+                {{form.price.label(class='form-label')}}
+                {{ form.price(placeholder="15,000,000", class="form-control")}}
+
+            </div>
+
+        
+            <div class="property_type">
+                {{form.property_type.label(class='form-label')}}
+                {{ form.property_type(class="form-control")}}
+        
+                
+            </div>
+
+
         </div>
-        <div class="field-container">
-            {{form.room_num.label(class='form.label')}}
-            {{ form.room_num(placeholder="3")}}
-        </div>
-        <div class="field-container">
-            {{form.bathroom_num.label(class='form.label')}}
-            {{ form.bathroom_num(placeholder="2")}}
-        </div>
-        <div class="field-container">
-            {{form.price.label(class='form.label')}}
-            {{ form.price(placeholder="15,000,000")}}
-        </div>
-        <div class="field-container">
-            {{form.property_type.label(class='form.label')}}
-            {{ form.property_type}}
-        </div>
-        <div class="field-container">
-            {{form.location.label(class='form.label')}}
-            {{ form.location(placeholder="10 Waterloo Rd")}}
-        </div>
-        <div class="field-container">
-            {{form.photo.label(class='form.label')}}
-            {{form.photo}}
+        
+        
+        <div class="column-fields">
+            {{form.location.label(class='form-label')}}
+            {{ form.location(placeholder="10 Waterloo Rd", class="form-contorl small-control")}}
+    
+    
+            {{form.photo.label(class='form-label')}}
+            {{form.photo(class="form-contorl small-control")}}
+
         </div>
 
+        <button type="submit" name="submit" class="btn btn-primary">Add Property</button>
+        
     </form>
 
 </div>

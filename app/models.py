@@ -1,4 +1,3 @@
-from sqlalchemy import Unicode
 from . import db
 
 
@@ -28,7 +27,7 @@ class Property(db.Model):
 
     def get_id(self):
         try:
-            return Unicode(self.id)  # python 2 support
+            return unicode(self.id)  # python 2 support
         except NameError:
             return str(self.id)  # python 3 support
     
