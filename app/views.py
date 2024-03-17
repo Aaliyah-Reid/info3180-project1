@@ -6,8 +6,10 @@ This file contains the routes for your application.
 """
 
 from app import app
-from flask import render_template, request, redirect, url_for
-
+from flask import render_template, request, redirect, url_for, flash
+from app.models import Property
+from .forms import createPropertyForm
+from werkzeug.utils import secure_filename
 
 ###
 # Routing for your application.
@@ -23,6 +25,34 @@ def home():
 def about():
     """Render the website's about page."""
     return render_template('about.html', name="Mary Jane")
+
+@app.route('/properties/create', methods=['POST', 'GET'])
+def createProperty():
+    form = createPropertyForm()
+
+    if request.method == 'POST':
+        if form.validate_on_submit():
+           title = form.title.data
+           description = form.description.data
+           room_num = form.room_num.data
+           bathroom_num = form.bathroom_num.data 
+           price = form.price.data
+           property_type = form.property_type.data
+           location = form.location.data
+           photo = form.photo.data
+           
+
+        return redirect(url_for('properties'))
+
+    return render_template('create.html', form=form)
+
+@app.route('/properties')
+def properties():
+    return render_template('properties.html')
+
+@app.route('/properties/<propertyid>')
+def viewProperty():
+    pass
 
 
 ###

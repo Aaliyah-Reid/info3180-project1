@@ -1,0 +1,51 @@
+{% extends "base.html" %}
+
+{% block main %}
+
+<h1>Add New Property</h1>
+
+<div class="form_container">
+
+    <form action="{{url_for('createProperty')}}" method="post">
+        {{form.crsf_token}}
+
+        <div class="field-container">
+            {{form.title.label(class='form.label')}}
+            {{ form.title(placeholder="Enter propety title")}}
+        </div>
+        <div class="field-container">
+            <{{form.description.label(class='form.label')}}
+            {{ form.description(placeholder="Provide a detailed description")}}
+        </div>
+        <div class="field-container">
+            {{form.room_num.label(class='form.label')}}
+            {{ form.room_num(placeholder="3")}}
+        </div>
+        <div class="field-container">
+            {{form.bathroom_num.label(class='form.label')}}
+            {{ form.bathroom_num(placeholder="2")}}
+        </div>
+        <div class="field-container">
+            {{form.price.label(class='form.label')}}
+            {{ form.price(placeholder="15,000,000")}}
+        </div>
+        <div class="field-container">
+            {{form.property_type.label(class='form.label')}}
+            {{ form.property_type}}
+        </div>
+        <div class="field-container">
+            {{form.location.label(class='form.label')}}
+            {{ form.location(placeholder="10 Waterloo Rd")}}
+        </div>
+        <div class="field-container">
+            {{form.photo.label(class='form.label')}}
+            {{form.photo}}
+        </div>
+
+    </form>
+
+</div>
+
+
+
+{% endblock %}
